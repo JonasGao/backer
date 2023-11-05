@@ -32,7 +32,7 @@ jobs:
           repository: subconverter
           branch: master
           target: subconverter
-          ak: ${{ secrets.clash_rs_key }}  
+          ak: ${{ secrets.clash_rs_key }}
   Explore3:
     runs-on: ubuntu-latest
     steps:
@@ -45,4 +45,17 @@ jobs:
           repository: dae
           branch: main
           target: dae
+          ak: ${{ secrets.clash_rs_key }}
+  Explore4:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Hello World
+        uses: ./.github/actions/pusher-action
+        with:
+          owner: juicity
+          repository: juicity
+          branch: main
+          target: juicity
           ak: ${{ secrets.clash_rs_key }}
