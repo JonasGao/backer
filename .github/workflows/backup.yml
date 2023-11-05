@@ -4,12 +4,12 @@ on:
   schedule:
     - cron: "0 0 * * *"
 jobs:
-  Explore-GitHub-Actions:
+  Explore1:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
-      - name: Backup 1
+      - name: Hello World
         uses: ./.github/actions/pusher-action
         with:
           owner: watfaq
@@ -17,11 +17,29 @@ jobs:
           branch: master
           target: clash-rs
           ak: ${{ secrets.clash_rs_key }}
-      - name: Backup 2
+  Explore2:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Hello World
         uses: ./.github/actions/pusher-action
         with:
           owner: tindy2013
           repository: subconverter
           branch: master
           target: subconverter
+          ak: ${{ secrets.clash_rs_key }}  
+  Explore3:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Hello World
+        uses: ./.github/actions/pusher-action
+        with:
+          owner: daeuniverse
+          repository: dae
+          branch: main
+          target: dae
           ak: ${{ secrets.clash_rs_key }}
