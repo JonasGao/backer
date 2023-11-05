@@ -27,6 +27,7 @@ runs:
       run: |
         git config --global user.name 'JonasGao'
         git config --global user.email 'jonasgao@users.noreply.github.com'
+      shell: bash
     - name: Config Git Repo
       env:
         RK: ${{ secrets.clash_rs_key }}
@@ -34,10 +35,12 @@ runs:
       run: |
         cd clash-rs
         git remote add backup "https://${RK}@github.com/JonasGao/${RN}.git"
+      shell: bash
     - name: Push
       run: |
         cd clash-rs
         git push backup HEAD:main --force
+      shell: bash
 branding:
   icon: 'download'
   color: 'blue'
