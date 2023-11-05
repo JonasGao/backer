@@ -6,22 +6,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Clone Github Repo
-        uses: whyakari/github-repo-action@v3.1
+        uses: ./.github/actions/pusher-action
         with:
           owner: Watfaq
           repository: clash-rs
           branch: master
-      - name: Config Git
-        run: |
-          git config --global user.name 'JonasGao'
-          git config --global user.email 'jonasgao@users.noreply.github.com'
-      - name: Config Git Repo
-        env:
-          SUPER_SECRET: ${{ secrets.clash_rs_key }}
-        run: |
-          cd clash-rs
-          git remote add backup "https://${SUPER_SECRET}@github.com/JonasGao/clash-rs.git"
-      - name: Push
-        run: |
-          cd clash-rs
-          git push backup HEAD:main --force
+          target: clash-rs
