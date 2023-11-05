@@ -14,6 +14,9 @@ inputs:
   target:
     description: 'Target Repo'
     required: true
+  ak:
+    description: 'Ak'
+    required: true
 runs:
   using: 'composite'
   steps:
@@ -30,7 +33,7 @@ runs:
       shell: bash
     - name: Config Git Repo
       env:
-        RK: ${{ secrets.clash_rs_key }}
+        RK: ${{ inputs.ak }}
         RN: ${{ inputs.target }}
       run: |
         cd clash-rs
