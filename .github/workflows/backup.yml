@@ -14,3 +14,4 @@ jobs:
           repository: clash-rs
           branch: master
           target: clash-rs
+          ak: ${{ secrets.clash_rs_key }}
