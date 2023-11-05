@@ -54,8 +54,8 @@ jobs:
       - name: Hello World
         uses: ./.github/actions/pusher-action
         with:
-          owner: juicity
-          repository: juicity
-          branch: main
-          target: juicity
+          owner: haishanh
+          repository: yacd
+          branch: master
+          target: yacd
           ak: ${{ secrets.clash_rs_key }}
