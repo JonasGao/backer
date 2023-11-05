@@ -35,13 +35,10 @@ runs:
       env:
         RK: ${{ inputs.ak }}
         RN: ${{ inputs.target }}
+        SR: ${{ inputs.repository }}
       run: |
-        cd clash-rs
+        cd ${SR}
         git remote add backup "https://${RK}@github.com/JonasGao/${RN}.git"
-      shell: bash
-    - name: Push
-      run: |
-        cd clash-rs
         git push backup HEAD:main --force
       shell: bash
 branding:

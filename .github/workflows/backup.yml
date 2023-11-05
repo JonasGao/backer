@@ -7,11 +7,19 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
-      - name: Clone Github Repo
+      - name: Backup 1
         uses: ./.github/actions/pusher-action
         with:
-          owner: Watfaq
+          owner: watfaq
           repository: clash-rs
           branch: master
           target: clash-rs
+          ak: ${{ secrets.clash_rs_key }}
+      - name: Backup 2
+        uses: ./.github/actions/pusher-action
+        with:
+          owner: tindy2013
+          repository: subconverter
+          branch: master
+          target: subconverter
           ak: ${{ secrets.clash_rs_key }}
