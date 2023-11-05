@@ -11,10 +11,13 @@ jobs:
           owner: Watfaq
           repository: clash-rs
           branch: master
-      - name: Commit report
+      - name: Config Git Repo
         run: |
           cd clash-rs
           git config --global user.name 'JonasGao'
           git config --global user.email 'jonasgao@users.noreply.github.com'
           git remote add backup https://github.com/JonasGao/clash-rs
+      - name: Push
+        run: |
+          cd clash-rs
           git push backup HEAD:main --force
