@@ -13,6 +13,7 @@ jobs:
           branch: master
       - name: Commit report
         run: |
+          cd clash-rs
           git config --global user.name 'JonasGao'
           git config --global user.email 'jonasgao@users.noreply.github.com'
           git remote add backup https://github.com/JonasGao/clash-rs
