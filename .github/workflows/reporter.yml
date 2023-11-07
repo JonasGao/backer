@@ -1,0 +1,17 @@
+name: Reporter reporting
+run-name: ${{ github.actor }} is asking a Report 🚀
+on:
+  push:
+    branches:
+      - 'main'
+    paths:
+      - '.github/workflows/reporter.yml'
+jobs:
+  Explore1:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Hello Report
+        run: |
+          echo "Hello, Report!"
