@@ -5,11 +5,23 @@ import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
+T = "{0: <30}| {1: <25}| {2: <25}| {3: <20}| {4: <6}| {5: <6}| {6: <20}| {7: <25}| {8: <10}| {9: <25}| {10}\n"
+
 
 def main():
-    table = ("{0: <30}| {1: <25}| {2: <25}| {3: <20}| {4: <6}| {5: <6}| {6}\n"
-             .format("repo", "update time", "push time", "default branch", "archived", "disabled"
-                     , "message"))
+    table = (T.format(
+        "repo",  # 0
+        "update time",  # 1
+        "push time",  # 2
+        "default branch",  # 3
+        "archived",  # 4
+        "disabled",  # 5
+        "tag name",  # 6
+        "tag time",  # 7
+        "commit sha",  # 8
+        "commit time",  # 9
+        "message"  # 10
+    ))
     for line in sys.stdin:
         table += line
 
