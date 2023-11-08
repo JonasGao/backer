@@ -5,7 +5,7 @@ import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
-T = "{0: <30}| {1: <25}| {2: <25}| {3: <20}| {4: <6}| {5: <6}| {6: <20}| {7: <25}| {8: <10}| {9: <25}| {10}\n"
+T = "{0: <30}| {1: <25}| {2: <25}| {3: <20}| {4: <10}| {5: <10}| {6: <20}| {7: <25}| {8: <10}| {9: <25}| {10}\n"
 
 
 def main():
