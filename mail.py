@@ -5,7 +5,7 @@ import smtplib
 
 
 def main():
-    message = ("{0: <30}| {1: <25}| {2: <25}| {3: <20}| {4}"
+    message = ("{0: <30}| {1: <25}| {2: <25}| {3: <20}| {4}\n"
                .format("repo", "update time", "push time", "default branch", "message"))
     for line in sys.stdin:
         message += line
