@@ -12,6 +12,10 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
-      - name: Hello Report
-        run: |
-          echo "Hello, Report!"
+      - name: Setup python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+      - name: Reporting...
+        run: ./reporter.sh
+        shell: bash
