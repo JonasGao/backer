@@ -19,5 +19,7 @@ jobs:
       - name: Reporting...
         run: chmod u+x reporter.sh
       - name: Reporting...
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: ./reporter.sh
         shell: bash
