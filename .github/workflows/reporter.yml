@@ -6,6 +6,9 @@ on:
       - 'main'
     paths:
       - '.github/workflows/reporter.yml'
+      - 'repos'
+  schedule:
+    - cron: "0 14 * * *"
 jobs:
   Explore1:
     runs-on: ubuntu-latest
@@ -16,10 +19,13 @@ jobs:
         uses: actions/setup-python@v4
         with:
           python-version: '3.x'
-      - name: Reporting...
+      - name: Setup scripts
         run: chmod u+x reporter.sh
       - name: Reporting...
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          OUTLOOK_USER: ${{ secrets.OUTLOOK_USER }}
+          OUTLOOK_KEY: ${{ secrets.OUTLOOK_KEY }}
+          REPORT_RECEIVER: ${{ secrets.REPORT_RECEIVER }}
         run: ./reporter.sh
         shell: bash
