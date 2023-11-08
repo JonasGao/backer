@@ -2,22 +2,30 @@ import os
 import sys
 from email.message import EmailMessage
 import smtplib
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
 
 
 def main():
-    message = ("{0: <30}| {1: <25}| {2: <25}| {3: <20}| {4}\n"
-               .format("repo", "update time", "push time", "default branch", "message"))
+    table = ("{0: <30}| {1: <25}| {2: <25}| {3: <20}| {4}\n"
+             .format("repo", "update time", "push time", "default branch", "message"))
     for line in sys.stdin:
-        message += line
+        table += line
+
+    message = f"<html><body><pre><code>{table}<code></pre></body></html>"
+
+    part1 = MIMEText(table, 'plain')
+    part2 = MIMEText(message, 'html')
 
     sender = os.getenv("OUTLOOK_USER")
     recipient = os.getenv("REPORT_RECEIVER")
 
-    email = EmailMessage()
+    email = MIMEMultipart('alternative')
     email["From"] = sender
     email["To"] = recipient
     email["Subject"] = "仓库报告"
-    email.set_content(message)
+    email.attach(part1)
+    email.attach(part2)
 
     smtp = smtplib.SMTP("smtp-mail.outlook.com", port=587)
     smtp.starttls()
