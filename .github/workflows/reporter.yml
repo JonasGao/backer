@@ -7,6 +7,7 @@ on:
     paths:
       - '.github/workflows/reporter.yml'
       - 'mail.py'
+      - 'parser.py'
       - 'repos'
   schedule:
     - cron: "0 14 * * *"

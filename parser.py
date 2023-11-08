@@ -33,7 +33,7 @@ def load_commit():
     with open("lcom.txt", "r") as f:
         fd = f.read()
         d = json.loads(fd)
-        return d
+        return d[0]
 
 
 def main():
