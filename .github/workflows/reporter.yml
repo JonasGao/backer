@@ -17,5 +17,7 @@ jobs:
         with:
           python-version: '3.x'
       - name: Reporting...
+        run: chmod u+x reporter.sh
+      - name: Reporting...
         run: ./reporter.sh
         shell: bash
