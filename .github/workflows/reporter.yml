@@ -32,3 +32,8 @@ jobs:
           REPORT_RECEIVER: ${{ secrets.REPORT_RECEIVER }}
         run: ./reporter.sh
         shell: bash
+      - name: Archive report.txt
+        uses: actions/upload-artifact@v3
+        with:
+          name: repo-report
+          path: report.txt

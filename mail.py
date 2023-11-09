@@ -1,6 +1,4 @@
 import os
-import sys
-from email.message import EmailMessage
 import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
@@ -12,11 +10,14 @@ def load_template():
         return Template(f.read())
 
 
+def load_report():
+    with open("report.html", "r") as f:
+        return f.read()
+
+
 def main():
     t = load_template()
-    body = ""
-    for line in sys.stdin:
-        body += line
+    body = load_report()
 
     message = t.substitute(body=body)
 
