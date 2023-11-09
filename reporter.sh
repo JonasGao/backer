@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-[ -f report.txt ] && mv report.txt latest_report.txt
+[ -f report.txt ] && mv report.txt latest_report.txt && echo "Renamed latest successfully"
 while read -r line
 do
   gh api "repos/$line" > repo.txt
