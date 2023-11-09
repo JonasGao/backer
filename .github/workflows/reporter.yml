@@ -9,6 +9,7 @@ on:
       - 'mail.py'
       - 'parser.py'
       - 'repos'
+      - 'row.html'
   schedule:
     - cron: "30 1,13 * * *"
 jobs:
