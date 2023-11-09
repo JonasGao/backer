@@ -10,7 +10,7 @@ on:
       - 'parser.py'
       - 'repos'
   schedule:
-    - cron: "0 14 * * *"
+    - cron: "30 1,13 * * *"
 jobs:
   Explore1:
     runs-on: ubuntu-latest
