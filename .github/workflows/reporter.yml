@@ -39,3 +39,4 @@ jobs:
         uses: actions/cache@v2
         with:
           path: report.txt
+          key: report.txt
