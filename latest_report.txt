@@ -1,0 +1,1 @@
+Watfaq/clash-rs|2023-11-07T14:51:54Z|2023-11-08T03:04:24Z|master|False|True|tuic-server-1.0.0|2023-06-08T07:40:51Z|18c96eb3|2023-11-03T06:24:53Z|Initial Commit

@@ -1,13 +1,13 @@
 <tr>
-    <td style="white-space: nowrap;border: 1px solid #ccc;padding: 0.5rem 1rem">$full_name</td>
-    <td style="white-space: nowrap;border: 1px solid #ccc;padding: 0.5rem 1rem">$updated_at</td>
-    <td style="white-space: nowrap;border: 1px solid #ccc;padding: 0.5rem 1rem">$pushed_at</td>
-    <td style="white-space: nowrap;border: 1px solid #ccc;padding: 0.5rem 1rem">$default_branch</td>
-    <td style="white-space: nowrap;border: 1px solid #ccc;padding: 0.5rem 1rem">$archived</td>
-    <td style="white-space: nowrap;border: 1px solid #ccc;padding: 0.5rem 1rem">$disabled</td>
-    <td style="white-space: nowrap;border: 1px solid #ccc;padding: 0.5rem 1rem">$tag_name</td>
-    <td style="white-space: nowrap;border: 1px solid #ccc;padding: 0.5rem 1rem">$tag_publishedAt</td>
-    <td style="white-space: nowrap;border: 1px solid #ccc;padding: 0.5rem 1rem">$commit_sha</td>
-    <td style="white-space: nowrap;border: 1px solid #ccc;padding: 0.5rem 1rem">$commit_at</td>
-    <td style="white-space: nowrap;border: 1px solid #ccc;padding: 0.5rem 1rem">$message</td>
+    <td style="white-space: nowrap;border: 1px solid #ccc;padding: 0.5rem 1rem">{{ full_name }}</td>
+    <td style="white-space: nowrap;border: 1px solid #ccc;padding: 0.5rem 1rem">{{ updated_at }}</td>
+    <td style="white-space: nowrap;border: 1px solid #ccc;padding: 0.5rem 1rem">{% if pushed_at.changed %}⚠️{% endif %}{{ pushed_at.value }}</td>
+    <td style="white-space: nowrap;border: 1px solid #ccc;padding: 0.5rem 1rem">{% if default_branch.changed %}⚠️{% endif %}{{ default_branch.value }}</td>
+    <td style="white-space: nowrap;border: 1px solid #ccc;padding: 0.5rem 1rem">{% if archived.changed %}⚠️{% endif %}{{ archived.value }}</td>
+    <td style="white-space: nowrap;border: 1px solid #ccc;padding: 0.5rem 1rem">{% if disabled.changed %}⚠️{% endif %}{{ disabled.value }}</td>
+    <td style="white-space: nowrap;border: 1px solid #ccc;padding: 0.5rem 1rem">{% if tag_name.changed %}⚠️{% endif %}{{ tag_name.value }}</td>
+    <td style="white-space: nowrap;border: 1px solid #ccc;padding: 0.5rem 1rem">{{ tag_publishedAt }}</td>
+    <td style="white-space: nowrap;border: 1px solid #ccc;padding: 0.5rem 1rem">{% if commit_sha.changed %}⚠️{% endif %}{{ commit_sha.value }}</td>
+    <td style="white-space: nowrap;border: 1px solid #ccc;padding: 0.5rem 1rem">{{ commit_at }}</td>
+    <td style="white-space: nowrap;border: 1px solid #ccc;padding: 0.5rem 1rem">{{ message }}</td>
 </tr>
