@@ -75,7 +75,7 @@ def build_str():
             tag_publishedAt=rel["publishedAt"],
             commit_sha=chk_val(com["sha"][0:8], lat, 8),
             commit_at=com["commit"]["committer"]["date"],
-            message=com["commit"]["message"],
+            message="",
         )
     return dict(
         html=ht.render(d),
