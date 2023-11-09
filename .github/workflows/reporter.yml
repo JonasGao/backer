@@ -10,6 +10,7 @@ on:
       - 'parser.py'
       - 'repos'
       - 'row.html'
+      - 'reporter.sh'
   schedule:
     - cron: "30 1,13 * * *"
 jobs:
