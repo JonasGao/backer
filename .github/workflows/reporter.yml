@@ -24,8 +24,6 @@ jobs:
           python-version: '3.x'
       - name: Download latest report
         uses: actions/download-artifact@v3
-        with:
-          name: repo-report
       - name: Setup scripts
         run: chmod u+x reporter.sh
       - name: Reporting...
