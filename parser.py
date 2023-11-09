@@ -1,5 +1,6 @@
 import json
 import sys
+from string import Template
 
 # 0  full_name
 # 1  updated_at
@@ -36,39 +37,49 @@ def load_commit():
         return d[0]
 
 
-def main():
+def load_template():
+    with open("row.html", "r") as f:
+        return Template(f.read())
+
+
+def build_str():
+    t = load_template()
     n = sys.argv[1]
     rep = load_repo()
     rel = load_release()
     com = load_commit()
     if 'message' in rep:
-        print(T.format(
-            n,  # 0
-            '?',  # 1
-            '?',  # 2
-            '?',  # 3
-            '?',  # 4
-            '?',  # 5
-            '?',  # 6
-            '?',  # 7
-            '?',  # 8
-            '?',  # 9
-            "⚠️ " + rep['message']
-        ))
+        return t.substitute(
+            full_name=n,
+            updated_at='?',
+            pushed_at='?',
+            default_branch='?',
+            archived='?',
+            disabled='?',
+            tag_name='?',
+            tag_publishedAt='?',
+            commit_sha='?',
+            commit_at='?',
+            message="⚠️ " + rep['message'],
+        )
     else:
-        print(T.format(
-            rep['full_name'],  # 0
-            rep['updated_at'],  # 1
-            rep['pushed_at'],  # 2
-            rep['default_branch'],  # 3
-            rep['archived'],  # 4
-            rep['disabled'],  # 5
-            rel["name"],  # 6
-            rel["publishedAt"],  # 7
-            com["sha"][0:8],  # 8
-            com["commit"]["committer"]["date"],  # 9
-            ""  # 10
-        ))
+        return t.substitute(
+            full_name=rep['full_name'],
+            updated_at=rep['updated_at'],
+            pushed_at=rep['pushed_at'],
+            default_branch=rep['default_branch'],
+            archived=rep['archived'],
+            disabled=rep['disabled'],
+            tag_name=rel["name"],
+            tag_publishedAt=rel["publishedAt"],
+            commit_sha=com["sha"][0:8],
+            commit_at=com["commit"]["committer"]["date"],
+            message=com["commit"]["message"],
+        )
+
+
+def main():
+    print(build_str())
 
 
 if __name__ == '__main__':

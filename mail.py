@@ -4,30 +4,23 @@ from email.message import EmailMessage
 import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
+from string import Template
 
-T = "{0: <30}| {1: <25}| {2: <25}| {3: <20}| {4: <10}| {5: <10}| {6: <20}| {7: <25}| {8: <10}| {9: <25}| {10}\n"
+
+def load_template():
+    with open("table.html", "r") as f:
+        return Template(f.read())
 
 
 def main():
-    table = (T.format(
-        "repo",  # 0
-        "update time",  # 1
-        "push time",  # 2
-        "default branch",  # 3
-        "archived",  # 4
-        "disabled",  # 5
-        "tag name",  # 6
-        "tag time",  # 7
-        "commit sha",  # 8
-        "commit time",  # 9
-        "message"  # 10
-    ))
+    t = load_template()
+    body = ""
     for line in sys.stdin:
-        table += line
+        body += line
 
-    message = f"<html><body><pre><code>{table}<code></pre></body></html>"
+    message = t.substitute(body=body)
 
-    part1 = MIMEText(table, 'plain')
+    part1 = MIMEText("Repo Report, please see html.", 'plain')
     part2 = MIMEText(message, 'html')
 
     sender = os.getenv("OUTLOOK_USER")
