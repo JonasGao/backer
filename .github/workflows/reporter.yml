@@ -43,8 +43,3 @@ jobs:
           REPORT_RECEIVER: ${{ secrets.REPORT_RECEIVER }}
         run: ./reporter.sh
         shell: bash
-      - name: Archive report.txt
-        uses: actions/cache@v3
-        with:
-          path: report.txt
-          key: report.txt
