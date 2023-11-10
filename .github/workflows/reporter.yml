@@ -28,6 +28,11 @@ jobs:
         run: pip install -r requirements.txt
       - name: Setup scripts
         run: chmod u+x reporter.sh
+      - name: Archive report.txt
+        uses: actions/cache@v3
+        with:
+          path: report.txt
+          key: report.txt
       - name: Test latest
         run: ls -al
       - name: Reporting...
@@ -39,7 +44,7 @@ jobs:
         run: ./reporter.sh
         shell: bash
       - name: Archive report.txt
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: report.txt
           key: report.txt
