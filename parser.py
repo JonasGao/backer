@@ -61,6 +61,7 @@ def build_str():
             tag_publishedAt='?',
             commit_sha=unk,
             commit_at='?',
+            commit_msg='?',
             message="⚠️ " + rep['message'],
         )
     else:
@@ -75,6 +76,7 @@ def build_str():
             tag_publishedAt=rel["publishedAt"],
             commit_sha=chk_val(com["sha"][0:8], lat, 8),
             commit_at=com["commit"]["committer"]["date"],
+            commit_msg=com["commit"]["message"],
             message="",
         )
     return dict(
