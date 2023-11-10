@@ -1,5 +1,7 @@
 <tr>
-    <td style="white-space: nowrap;border: 1px solid #ccc;padding: 0.5rem 1rem">{{ full_name }}</td>
+    <td style="white-space: nowrap;border: 1px solid #ccc;padding: 0.5rem 1rem">
+        <a href="https://github.com/{{ full_name }}">{{ full_name }}</a>
+    </td>
     <td style="white-space: nowrap;border: 1px solid #ccc;padding: 0.5rem 1rem">{{ updated_at }}</td>
     <td style="white-space: nowrap;border: 1px solid #ccc;padding: 0.5rem 1rem">{% if pushed_at.changed %}⚠️{% endif %}{{ pushed_at.value }}</td>
     <td style="white-space: nowrap;border: 1px solid #ccc;padding: 0.5rem 1rem">{% if default_branch.changed %}⚠️{% endif %}{{ default_branch.value }}</td>
