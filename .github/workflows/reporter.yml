@@ -28,10 +28,6 @@ jobs:
         run: pip install -r requirements.txt
       - name: Setup scripts
         run: chmod u+x reporter.sh
-      - uses: actions/cache/restore@v3
-        with:
-          path: report.txt
-          key: report.txt
       - name: Reporting...
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -40,7 +36,8 @@ jobs:
           REPORT_RECEIVER: ${{ secrets.REPORT_RECEIVER }}
         run: ./reporter.sh
         shell: bash
-      - uses: actions/cache/save@v3
+      - name: Archive report.txt
+        uses: actions/upload-artifact@v3
         with:
+          name: report.txt
           path: report.txt
-          key: report.txt
