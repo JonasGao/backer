@@ -24,10 +24,16 @@ jobs:
         with:
           python-version: '3.x'
           cache: 'pip'
-      - name: Install dependencies
+      - name: Install pip dependencies
         run: pip install -r requirements.txt
       - name: Setup scripts
-        run: chmod u+x reporter.sh
+        run: |
+          chmod u+x reporter.sh
+          chmod u+x down_latest.sh
+      - name: Download latest report
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: down_latest.sh
       - name: Reporting...
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
