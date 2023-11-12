@@ -33,7 +33,7 @@ jobs:
       - name: Download latest report
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: down_latest.sh
+        run: ./down_latest.sh
       - name: Reporting...
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
