@@ -6,7 +6,7 @@ do
   gh api "repos/$line/commits" > lcom.txt
   # Parse data into one row, html to report.html, txt to report.txt
   python ./parser.py "$line"
-done < ./repos
+done < ./repos.txt
 # Send report.html
 # report.txt will upload to artifacts
 python ./mail.py
