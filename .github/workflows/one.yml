@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - 'main'
+  schedule:
+    - cron: "0 0,6,12,16 * * *"
 jobs:
   Explore:
     runs-on: ubuntu-latest
