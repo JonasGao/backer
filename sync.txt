@@ -1,5 +1,5 @@
-watfaq,clash-rs,master
-tindy2013,subconverter,master
-daeuniverse,dae,main
-haishanh,yacd,master
-juicity,juicity,main
+watfaq,clash-rs,master,clash-rs
+tindy2013,subconverter,master,subconverter
+daeuniverse,dae,main,dae
+haishanh,yacd,master,yacd
+juicity,juicity,main,juicity
