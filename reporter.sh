@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 while read -r line
 do
+  echo "Fetching repo '$line' info"
   gh api "repos/$line" > repo.txt
   gh release view --repo "$line" --json name,publishedAt > rele.txt
   gh api "repos/$line/commits" > lcom.txt
