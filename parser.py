@@ -45,8 +45,15 @@ def build_str():
     ht = load_template("row.html")
     tt = load_template("row.txt")
     rep = load_json("repo.txt")
-    rel = load_json("rele.txt")
     com = load_json("lcom.txt")[0]
+    try:
+        rel = load_json("rele.txt")
+    except json.decoder.JSONDecodeError:
+        print("Failed load latest release.")
+        rel = dict(
+            name='',
+            publishedAt='',
+        )
     lat = load_latest(n)
     unk = dict(value='?', changed=False)
     if 'message' in rep:
