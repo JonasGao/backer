@@ -53,23 +53,27 @@ def fetch_repos(repos):
 def load_latest():
     if not os.path.isfile('latest_report.txt'):
         return False, "Not found latest_report.txt", dict()
-    with open('latest_report.txt') as f:
-        a = dict()
-        for row in csv.reader(f, delimiter="|"):
-            a[row[0]] = dict(
-                full_name=row[0],
-                updated_at=row[1],
-                pushed_at=row[2],
-                default_branch=row[3],
-                archived=(row[4] == 'True'),
-                disabled=(row[5] == 'True'),
-                tag_name=row[6],
-                tag_published_at=row[7],
-                commit_sha=row[8],
-                commit_at=row[9],
-                commit_msg=row[10],
-            )
-        return True, "", a
+    try:
+        with open('latest_report.txt') as f:
+            a = dict()
+            for row in csv.reader(f, delimiter="|"):
+                a[row[0]] = dict(
+                    full_name=row[0],
+                    updated_at=row[1],
+                    pushed_at=row[2],
+                    default_branch=row[3],
+                    archived=(row[4] == 'True'),
+                    disabled=(row[5] == 'True'),
+                    tag_name=row[6],
+                    tag_published_at=row[7],
+                    commit_sha=row[8],
+                    commit_at=row[9],
+                    commit_msg=row[10],
+                )
+            return True, "", a
+    except Exception as e:
+        print(e)
+        return False, "Failed load latest_report.txt", dict()
 
 
 def diff(repo, old):
