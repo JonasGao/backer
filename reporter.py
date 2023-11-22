@@ -53,7 +53,7 @@ def fetch_repos(repos):
 
 def load_latest():
     if not os.path.isfile('latest_report.txt'):
-        return False, "Not found latest_report.txt", None
+        return False, "Not found latest_report.txt", dict()
     with open('latest_report.txt') as f:
         a = dict()
         for row in csv.reader(f, delimiter="|"):
@@ -119,20 +119,23 @@ def main():
     if not suc:
         print("load_repos:", msg)
         return
-    suc, msg, latest = load_latest()
-    if not suc:
-        print("load_latest:", msg)
-        return
     fetch_repos(repos)
-    for repo in repos:
-        old = latest[repo['full_name']]
-        diff(repo, old)
-    if has_diff(repos):
+    suc, msg, latest = load_latest()
+    if suc:
+        for repo in repos:
+            old = latest[repo['full_name']]
+            diff(repo, old)
+        if has_diff(repos):
+            html, txt = render(repos)
+            mail.send(html)
+            save_latest(txt)
+        else:
+            print("No diff, skip report.")
+    else:
+        print("load_latest:", msg)
         html, txt = render(repos)
         mail.send(html)
         save_latest(txt)
-    else:
-        print("No diff, skip report.")
 
 
 if __name__ == '__main__':
