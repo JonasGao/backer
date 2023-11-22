@@ -39,16 +39,15 @@ def fetch_repos(repos):
             repo['commit_sha'] = cm["sha"]
             repo['commit_at'] = cm["commit"]["committer"]["date"]
             repo['commit_msg'] = cm["commit"]["message"]
-        r, bs = api.get_branch_where_head(repo['owner'], repo['repo'], cm['sha'])
-        if r:
-            ab = []
-            for br in bs:
-                ab.append(br['name'])
-            repo['commit_branch'] = ','.join(ab)
+            r, bs = api.get_branch_where_head(repo['owner'], repo['repo'], cm['sha'])
+            if r:
+                ab = []
+                for br in bs:
+                    ab.append(br['name'])
+                repo['commit_branch'] = ','.join(ab)
         r, re = api.get_release(repo['owner'], repo['repo'])
-        if r:
-            repo['tag_name'] = re["name"]
-            repo['tag_published_at'] = re["published_at"]
+        repo['tag_name'] = re["name"] if r else ""
+        repo['tag_published_at'] = re["published_at"] if r else ""
 
 
 def load_latest():

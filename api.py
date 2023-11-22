@@ -1,11 +1,15 @@
 import http.client
 import json
+import os
+
+TOKEN = "Bearer " + os.getenv("GITHUB_TOKEN")
 
 
 def get(url):
     conn = http.client.HTTPSConnection("api.github.com")
     conn.request("GET", url, None, {
         "User-Agent": "Backer/0.1 python3",
+        "Authorization": TOKEN,
         "Accept": "application/vnd.github+json"})
     r = conn.getresponse()
     print("Called get:", url, "Return:", r.status, r.reason)
