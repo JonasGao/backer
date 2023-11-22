@@ -23,7 +23,6 @@ jobs:
         run: |
           chmod u+x one.sh
           chmod u+x sync.sh
-          chmod u+x reporter.sh
           chmod u+x down_latest.sh
       - name: Download latest report
         env:

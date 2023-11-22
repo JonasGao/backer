@@ -2,25 +2,9 @@ import os
 import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
-from string import Template
 
 
-def load_template():
-    with open("table.html", "r") as f:
-        return Template(f.read())
-
-
-def load_report():
-    with open("report.html", "r") as f:
-        return f.read()
-
-
-def main():
-    t = load_template()
-    body = load_report()
-
-    message = t.substitute(body=body)
-
+def send(message):
     part1 = MIMEText("Repo Report, please see html.", 'plain')
     part2 = MIMEText(message, 'html')
 
@@ -42,4 +26,4 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    send("Hello")

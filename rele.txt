@@ -1,5 +1,0 @@
-{
-  "name": "tuic-server-1.0.0",
-  "publishedAt": "2023-06-08T07:40:51Z",
-  "targetCommitish": "2f275ac50375385e97fb7666f5b5e071c302cda6"
-}

@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 ./sync.sh
 echo "Finish sync."
-./reporter.sh
+python ./reporter.py
 echo "Finish report."
