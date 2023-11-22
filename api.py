@@ -20,7 +20,7 @@ def read(r, b):
         return r, d
     else:
         print("Read error response:", repr(b))
-        return r
+        return r, None
 
 
 def get_repo(owner, repo):
