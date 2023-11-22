@@ -1,2 +1,1 @@
 {{ full_name }}|{{ updated_at }}|{{ pushed_at.value }}|{{ default_branch.value }}|{{ archived.value }}|{{ disabled.value }}|{{ tag_name.value }}|{{ tag_publishedAt }}|{{ commit_sha.value }}|{{ commit_at }}|{{ message }}
-
