@@ -86,23 +86,6 @@ def diff(repo, old):
     repo['commit_sha_changed'] = repo['commit_sha'] != old['commit_sha']
 
 
-def render(repos):
-    ht = load_template("row.html")
-    tt = load_template("row.txt")
-    ca = []
-    ha = []
-    ta = []
-    for repo in repos:
-        if repo['changed']:
-            ca.append(ht.render(repo))
-        else:
-            ha.append(ht.render(repo))
-        ta.append(tt.render(repo))
-    bt = load_template("table.html")
-    html = bt.render(dict(change=''.join(ca), other=''.join(ha)))
-    return html, '\n'.join(ta)
-
-
 def has_diff(repos):
     for repo in repos:
         if repo['pushed_at_changed'] or \
@@ -114,12 +97,36 @@ def has_diff(repos):
                 repo['commit_sha_changed']:
             repo['changed'] = True
             return True
+        else:
+            repo['changed'] = False
     return False
 
 
 def save_latest(txt):
     with open("report.txt", "a") as f:
         f.write(txt)
+
+
+def render_report(repos):
+    ht = load_template("row.html")
+    ca = []
+    ha = []
+    for repo in repos:
+        if repo['changed']:
+            ca.append(ht.render(repo))
+        else:
+            ha.append(ht.render(repo))
+    bt = load_template("table.html")
+    html = bt.render(dict(change=''.join(ca), other=''.join(ha)))
+    return html
+
+
+def render_latest(repos):
+    t = load_template("row.txt")
+    a = []
+    for repo in repos:
+        a.append(t.render(repo))
+    return '\n'.join(a)
 
 
 def main():
@@ -134,16 +141,13 @@ def main():
             old = latest[repo['full_name']]
             diff(repo, old)
         if has_diff(repos):
-            html, txt = render(repos)
-            mail.send(html)
-            save_latest(txt)
+            mail.send(render_report(repos))
         else:
             print("No diff, skip report.")
     else:
         print("load_latest:", msg)
-        html, txt = render(repos)
-        mail.send(html)
-        save_latest(txt)
+        mail.send(render_report(repos))
+    save_latest(render_latest(repos))
 
 
 if __name__ == '__main__':
