@@ -48,6 +48,7 @@ def fetch_repos(repos):
         r, re = api.get_release(repo['owner'], repo['repo'])
         repo['tag_name'] = re["name"] if r else ""
         repo['tag_published_at'] = re["published_at"] if r else ""
+        repo['changed'] = False
 
 
 def load_latest():
@@ -97,8 +98,6 @@ def has_diff(repos):
                 repo['commit_sha_changed']:
             repo['changed'] = True
             return True
-        else:
-            repo['changed'] = False
     return False
 
 
