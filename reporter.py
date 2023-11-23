@@ -89,13 +89,17 @@ def diff(repo, old):
 def render(repos):
     ht = load_template("row.html")
     tt = load_template("row.txt")
+    ca = []
     ha = []
     ta = []
     for repo in repos:
-        ha.append(ht.render(repo))
+        if repo['changed']:
+            ca.append(ht.render(repo))
+        else:
+            ha.append(ht.render(repo))
         ta.append(tt.render(repo))
-    ht = load_template("table.html")
-    html = ht.render(dict(body=''.join(ha)))
+    bt = load_template("table.html")
+    html = bt.render(dict(change=''.join(ca), other=''.join(ha)))
     return html, '\n'.join(ta)
 
 
@@ -108,6 +112,7 @@ def has_diff(repos):
                 repo['tag_name_changed'] or \
                 repo['tag_published_at_changed'] or \
                 repo['commit_sha_changed']:
+            repo['changed'] = True
             return True
     return False
 

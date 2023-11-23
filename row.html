@@ -1,18 +1,18 @@
 <tr>
-    <td style="white-space: nowrap;padding: 0.2rem 0.5rem">
+    <td style="text-align:left;white-space: nowrap;padding: 0.2rem 0.5rem">
         <a href="https://github.com/{{ full_name }}">{{ full_name }}</a>
     </td>
-    <td style="white-space: nowrap;padding: 0.2rem 0.5rem">{{ updated_at }}</td>
-    <td style="white-space: nowrap;padding: 0.2rem 0.5rem">{% if pushed_at_changed %}⚠️{% endif %}{{ pushed_at }}</td>
-    <td style="white-space: nowrap;padding: 0.2rem 0.5rem">{% if default_branch_changed %}⚠️{% endif %}{{ default_branch }}</td>
-    <td style="white-space: nowrap;padding: 0.2rem 0.5rem">{% if archived_changed %}⚠️{% endif %}{{ archived }}</td>
-    <td style="white-space: nowrap;padding: 0.2rem 0.5rem">{% if disabled_changed %}⚠️{% endif %}{{ disabled }}</td>
-    <td style="white-space: nowrap;padding: 0.2rem 0.5rem">{% if tag_name_changed %}⚠️{% endif %}{{ tag_name }}</td>
-    <td style="white-space: nowrap;padding: 0.2rem 0.5rem">{{ tag_published_at }}</td>
-    <td style="white-space: nowrap;padding: 0.2rem 0.5rem">{% if commit_sha_changed %}⚠️{% endif %}{{ commit_sha[0:8] }}</td>
-    <td style="white-space: nowrap;padding: 0.2rem 0.5rem">{{ commit_at }}</td>
-    <td style="white-space: nowrap;padding: 0.2rem 0.5rem">{{ commit_branch }}</td>
-    <td style="white-space: nowrap;padding: 0.2rem 0.5rem">{{ message }}</td>
+    <td style="text-align:left;white-space: nowrap;padding: 0.2rem 0.5rem">{{ updated_at }}</td>
+    <td style="text-align:right;white-space: nowrap;padding: 0.2rem 0.5rem">{% if pushed_at_changed %}⚠️{% endif %}{{ pushed_at }}</td>
+    <td style="text-align:right;white-space: nowrap;padding: 0.2rem 0.5rem">{% if default_branch_changed %}⚠️{% endif %}{{ default_branch }}</td>
+    <td style="text-align:right;white-space: nowrap;padding: 0.2rem 0.5rem">{% if archived_changed %}⚠️{% endif %}{{ archived }}</td>
+    <td style="text-align:right;white-space: nowrap;padding: 0.2rem 0.5rem">{% if disabled_changed %}⚠️{% endif %}{{ disabled }}</td>
+    <td style="text-align:right;white-space: nowrap;padding: 0.2rem 0.5rem">{% if tag_name_changed %}⚠️{% endif %}{{ tag_name }}</td>
+    <td style="text-align:left;white-space: nowrap;padding: 0.2rem 0.5rem">{{ tag_published_at }}</td>
+    <td style="text-align:right;white-space: nowrap;padding: 0.2rem 0.5rem">{% if commit_sha_changed %}⚠️{% endif %}{{ commit_sha[0:8] }}</td>
+    <td style="text-align:left;white-space: nowrap;padding: 0.2rem 0.5rem">{{ commit_at }}</td>
+    <td style="text-align:left;white-space: nowrap;padding: 0.2rem 0.5rem">{{ commit_branch }}</td>
+    <td style="text-align:left;white-space: nowrap;padding: 0.2rem 0.5rem">{{ message }}</td>
 </tr>
 <tr>
     <td colspan="11" style="padding: 0.2rem 0.5rem">
