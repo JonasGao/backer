@@ -1,1 +1,1 @@
-{{ full_name }}|{{ updated_at }}|{{ pushed_at }}|{{ default_branch }}|{{ archived }}|{{ disabled }}|{{ tag_name }}|{{ tag_publishedAt }}|{{ commit_sha }}|{{ commit_at }}|{{ message }}
+{{ full_name }}|{{ updated_at }}|{{ pushed_at }}|{{ default_branch }}|{{ archived }}|{{ disabled }}|{{ tag_name }}|{{ tag_published_at }}|{{ commit_sha }}|{{ commit_at }}|{{ message }}

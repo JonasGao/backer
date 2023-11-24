@@ -88,6 +88,7 @@ def diff(repo, old):
 
 
 def has_diff(repos):
+    has = False
     for repo in repos:
         if repo['pushed_at_changed'] or \
                 repo['default_branch_changed'] or \
@@ -97,8 +98,8 @@ def has_diff(repos):
                 repo['tag_published_at_changed'] or \
                 repo['commit_sha_changed']:
             repo['changed'] = True
-            return True
-    return False
+            has = True
+    return has
 
 
 def save_latest(txt):
