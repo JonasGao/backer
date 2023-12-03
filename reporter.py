@@ -142,7 +142,7 @@ def main():
             diff(repo, old)
         d = has_diff(repos)
         if d > 0:
-            mail.send("发现有" + d + "个仓库更新", render_report(repos))
+            mail.send("发现有{0}个仓库更新".format(d), render_report(repos))
         else:
             print("No diff, skip report.")
     else:
