@@ -4,7 +4,7 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
 
-def send(message):
+def send(subject, message):
     part1 = MIMEText("Repo Report, please see html.", 'plain')
     part2 = MIMEText(message, 'html')
 
@@ -14,7 +14,7 @@ def send(message):
     email = MIMEMultipart('alternative')
     email["From"] = sender
     email["To"] = recipient
-    email["Subject"] = "仓库报告"
+    email["Subject"] = subject
     email.attach(part1)
     email.attach(part2)
 

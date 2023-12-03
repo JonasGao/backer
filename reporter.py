@@ -88,7 +88,7 @@ def diff(repo, old):
 
 
 def has_diff(repos):
-    has = False
+    has = 0
     for repo in repos:
         if repo['pushed_at_changed'] or \
                 repo['default_branch_changed'] or \
@@ -98,7 +98,7 @@ def has_diff(repos):
                 repo['tag_published_at_changed'] or \
                 repo['commit_sha_changed']:
             repo['changed'] = True
-            has = True
+            has = has + 1
     return has
 
 
@@ -140,13 +140,14 @@ def main():
         for repo in repos:
             old = latest[repo['full_name']]
             diff(repo, old)
-        if has_diff(repos):
-            mail.send(render_report(repos))
+        d = has_diff(repos)
+        if d > 0:
+            mail.send("发现有" + d + "个仓库更新", render_report(repos))
         else:
             print("No diff, skip report.")
     else:
         print("load_latest:", msg)
-        mail.send(render_report(repos))
+        mail.send("未找到上一次的记录，以下是当前仓库信息", render_report(repos))
     save_latest(render_latest(repos))
 
 
