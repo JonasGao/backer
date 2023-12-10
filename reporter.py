@@ -28,6 +28,7 @@ def fetch_repos(repos):
     for repo in repos:
         r, po = api.get_repo(repo['owner'], repo['repo'])
         if r:
+            repo['name'] = po['name']
             repo['full_name'] = po['full_name']
             repo['updated_at'] = po['updated_at']
             repo['pushed_at'] = po['pushed_at']
@@ -89,7 +90,7 @@ def diff(repo, old):
 
 def has_diff(repos):
     has = 0
-    has_diff_repo = ''
+    has_diff_repo = []
     for repo in repos:
         if repo['pushed_at_changed'] or \
                 repo['default_branch_changed'] or \
@@ -100,7 +101,7 @@ def has_diff(repos):
                 repo['commit_sha_changed']:
             repo['changed'] = True
             has = has + 1
-            has_diff_repo = repo['full_name']
+            has_diff_repo.append(repo['name'])
     return has, has_diff_repo
 
 
@@ -146,7 +147,11 @@ def main():
         if d <= 0:
             print("No diff, skip report.")
         elif d == 1:
-            mail.send("仓库{0}有更新".format(r), render_report(repos))
+            mail.send("{0} 更新".format(r[0]), render_report(repos))
+        elif d == 2:
+            mail.send("{0},{1} 更新".format(r[0], r[1]), render_report(repos))
+        elif d == 3:
+            mail.send("{0},{1},{2} 更新".format(r[0], r[1], r[2]), render_report(repos))
         else:
             mail.send("发现有{0}个仓库更新".format(d), render_report(repos))
     else:
