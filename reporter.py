@@ -79,16 +79,26 @@ def load_latest():
 
 
 def diff(repo, old):
-    repo['pushed_at_changed'] = repo['pushed_at'] != old['pushed_at']
+    # repo['pushed_at_changed'] = repo['pushed_at'] != old['pushed_at']
     repo['default_branch_changed'] = repo['default_branch'] != old['default_branch']
     repo['archived_changed'] = repo['archived'] != old['archived']
     repo['disabled_changed'] = repo['disabled'] != old['disabled']
-    repo['tag_name_changed'] = repo['tag_name'] != old['tag_name']
-    repo['tag_published_at_changed'] = repo['tag_published_at'] != old['tag_published_at']
-    repo['commit_sha_changed'] = repo['commit_sha'] != old['commit_sha']
+    # repo['tag_name_changed'] = repo['tag_name'] != old['tag_name']
+    # repo['tag_published_at_changed'] = repo['tag_published_at'] != old['tag_published_at']
+    # repo['commit_sha_changed'] = repo['commit_sha'] != old['commit_sha']
 
 
-def has_diff(repos):
+def has_diff(repo):
+    # return repo['pushed_at_changed'] or \
+    return repo['default_branch_changed'] or \
+        repo['archived_changed'] or \
+        repo['disabled_changed']
+    # repo['tag_name_changed'] or \
+    # repo['tag_published_at_changed'] or \
+    # repo['commit_sha_changed']
+
+
+def filter_diff(repos):
     has = 0
     has_diff_repo = []
     for repo in repos:
@@ -143,7 +153,7 @@ def main():
         for repo in repos:
             old = latest[repo['full_name']]
             diff(repo, old)
-        d, r = has_diff(repos)
+        d, r = filter_diff(repos)
         if d <= 0:
             print("No diff, skip report.")
         elif d == 1:
