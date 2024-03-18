@@ -64,12 +64,14 @@ def render_report(repos):
     ca = []
     ha = []
     for repo in repos:
+        d = repo.to_dict()
+        html_row = ht.render(d)
         if repo.changed:
-            ca.append(ht.render(repo))
+            ca.append(html_row)
         else:
-            ha.append(ht.render(repo))
-    bt = load_template(TEMPLATE_TABLE)
-    html = bt.render(dict(change=''.join(ca), other=''.join(ha)))
+            ha.append(html_row)
+    html_table = load_template(TEMPLATE_TABLE)
+    html = html_table.render(dict(change=''.join(ca), other=''.join(ha)))
     return html
 
 
@@ -77,7 +79,7 @@ def render_latest(repos):
     t = load_template(TEMPLATE_RECORD)
     a = []
     for repo in repos:
-        a.append(t.render(repo))
+        a.append(t.render(repo.to_dict()))
     return '\n'.join(a)
 
 

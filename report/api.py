@@ -93,6 +93,33 @@ class Repo:
         # repo['tag_published_at_changed'] or \
         # repo['commit_sha_changed']
 
+    def to_dict(self):
+        return dict(
+            owner=self.owner,
+            repo=self.repo,
+            full_name=self.full_name,
+            changed=self.changed,
+            disabled=self.disabled,
+            archived=self.archived,
+            default_branch=self.default_branch,
+            pushed_at=self.pushed_at,
+            updated_at=self.updated_at,
+            name=self.name,
+            commit_branch=self.commit_branch,
+            commit_msg=self.commit_msg,
+            commit_at=self.commit_at,
+            commit_sha=self.commit_sha,
+            tag_published_at=self.tag_published_at,
+            tag_name=self.tag_name,
+            commit_sha_changed=self.commit_sha_changed,
+            tag_published_at_changed=self.tag_published_at_changed,
+            tag_name_changed=self.tag_name_changed,
+            disabled_changed=self.disabled_changed,
+            archived_changed=self.archived_changed,
+            default_branch_changed=self.default_branch_changed,
+            pushed_at_changed=self.pushed_at_changed,
+        )
+
 
 def create_repo_from_csv(row):
     repo = Repo(owner=row[0], repo=row[1], full_name=row[0] + '/' + row[1])
