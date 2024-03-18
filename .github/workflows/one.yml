@@ -1,5 +1,5 @@
-name: GitHub Actions Demo
-run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
+name: Repo Jobs
+run-name: Lets do some thing for our network~ 🚀
 on:
   push:
     branches:
@@ -7,7 +7,7 @@ on:
   schedule:
     - cron: "0 0,6,12,16 * * *"
 jobs:
-  Explore:
+  RepoReport:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
@@ -35,10 +35,20 @@ jobs:
           OUTLOOK_KEY: ${{ secrets.OUTLOOK_KEY }}
           REPORT_RECEIVER: ${{ secrets.REPORT_RECEIVER }}
           RK: ${{ secrets.clash_rs_key }}
-        run: ./one.sh
+        run: python ./reporter.py
         shell: bash
       - name: Archive report.txt
         uses: actions/upload-artifact@v3
         with:
           name: report.txt
           path: report.txt
+  RepoSync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Sync...
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: sync/sync.sh
+        shell: bash
