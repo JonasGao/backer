@@ -76,13 +76,13 @@ class Repo:
         self.load_tag()
 
     def diff(self, old):
-        self.pushed_at_changed = self.pushed_at != old['pushed_at']
-        self.default_branch_changed = self.default_branch != old['default_branch']
-        self.archived_changed = self.archived != old['archived']
-        self.disabled_changed = self.disabled != old['disabled']
-        self.tag_name_changed = self.tag_name != old['tag_name']
-        self.tag_published_at_changed = self.tag_published_at != old['tag_published_at']
-        self.commit_sha_changed = self.commit_sha != old['commit_sha']
+        self.pushed_at_changed = self.pushed_at != old.pushed_at
+        self.default_branch_changed = self.default_branch != old.default_branch
+        self.archived_changed = self.archived != old.archived
+        self.disabled_changed = self.disabled != old.disabled
+        self.tag_name_changed = self.tag_name != old.tag_name
+        self.tag_published_at_changed = self.tag_published_at != old.tag_published_at
+        self.commit_sha_changed = self.commit_sha != old.commit_sha
 
     def has_diff(self):
         # return repo['pushed_at_changed'] or \

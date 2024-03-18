@@ -11,6 +11,10 @@ def send(subject, message):
     sender = os.getenv("OUTLOOK_USER")
     recipient = os.getenv("REPORT_RECEIVER")
 
+    if sender is None or recipient is None:
+        print("Skip mail sending. Please provide an email address.")
+        return
+
     email = MIMEMultipart('alternative')
     email["From"] = sender
     email["To"] = recipient
