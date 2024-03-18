@@ -64,7 +64,7 @@ def render_report(repos):
     ca = []
     ha = []
     for repo in repos:
-        if repo['changed']:
+        if repo.changed:
             ca.append(ht.render(repo))
         else:
             ha.append(ht.render(repo))

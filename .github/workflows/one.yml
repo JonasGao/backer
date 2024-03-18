@@ -1,5 +1,5 @@
 name: Repo Jobs
-run-name: Lets do some thing for our network~ 🚀
+run-name: Lets do some thing for our network~
 on:
   push:
     branches:
