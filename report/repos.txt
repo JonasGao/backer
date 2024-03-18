@@ -11,3 +11,6 @@ gwuhaolin,lightsocks
 v2ray,v2ray-core
 shadowsocks,shadowsocks-rust
 hunshcn,gh-proxy
+MetaCubeX,metacubexd
+MetaCubeX,mihomo
+MetaCubeX,ClashX.Meta
