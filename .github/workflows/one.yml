@@ -22,15 +22,14 @@ jobs:
       - name: Download latest report
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: ./down_latest.sh
+        run: report/down_latest.sh
       - name: Reporting...
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           OUTLOOK_USER: ${{ secrets.OUTLOOK_USER }}
           OUTLOOK_KEY: ${{ secrets.OUTLOOK_KEY }}
           REPORT_RECEIVER: ${{ secrets.REPORT_RECEIVER }}
-          RK: ${{ secrets.clash_rs_key }}
-        run: python ./reporter.py
+        run: python report/reporter.py
         shell: bash
       - name: Archive report.txt
         uses: actions/upload-artifact@v3

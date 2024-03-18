@@ -6,6 +6,7 @@ from jinja2 import Environment
 
 import mail
 
+REPO_LIST = 'report/repos.txt'
 env = Environment()
 
 
@@ -15,9 +16,9 @@ def load_template(name):
 
 
 def load_repos():
-    if not os.path.isfile('repos.txt'):
-        return False, "There is no repos.txt"
-    with open('repos.txt') as f:
+    if not os.path.isfile(REPO_LIST):
+        return False, f"Can not found {REPO_LIST}", []
+    with open(REPO_LIST) as f:
         a = []
         for row in csv.reader(f, delimiter=","):
             a.append(dict(owner=row[0], repo=row[1], full_name=row[0] + '/' + row[1]))
