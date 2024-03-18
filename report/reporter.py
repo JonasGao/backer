@@ -24,36 +24,8 @@ def load_repos():
     with open(REPO_LIST) as f:
         a = []
         for row in csv.reader(f, delimiter=","):
-            a.append(dict(owner=row[0], repo=row[1], full_name=row[0] + '/' + row[1]))
+            a.append(api.create_repo_from_csv(row))
         return True, "", a
-
-
-def fetch_repos(repos):
-    for repo in repos:
-        r, po = api.get_repo(repo['owner'], repo['repo'])
-        if r:
-            repo['name'] = po['name']
-            repo['full_name'] = po['full_name']
-            repo['updated_at'] = po['updated_at']
-            repo['pushed_at'] = po['pushed_at']
-            repo['default_branch'] = po['default_branch']
-            repo['archived'] = po['archived']
-            repo['disabled'] = po['disabled']
-        r, cm = api.get_commit(repo['owner'], repo['repo'])
-        if r:
-            repo['commit_sha'] = cm["sha"]
-            repo['commit_at'] = cm["commit"]["committer"]["date"]
-            repo['commit_msg'] = cm["commit"]["message"]
-            r, bs = api.get_branch_where_head(repo['owner'], repo['repo'], cm['sha'])
-            if r:
-                ab = []
-                for br in bs:
-                    ab.append(br['name'])
-                repo['commit_branch'] = ','.join(ab)
-        r, re = api.get_release(repo['owner'], repo['repo'])
-        repo['tag_name'] = re["name"] if r else ""
-        repo['tag_published_at'] = re["published_at"] if r else ""
-        repo['changed'] = False
 
 
 def load_latest():
@@ -63,53 +35,22 @@ def load_latest():
         with open('latest_report.txt') as f:
             a = dict()
             for row in csv.reader(f, delimiter="|"):
-                a[row[0]] = dict(
-                    full_name=row[0],
-                    updated_at=row[1],
-                    pushed_at=row[2],
-                    default_branch=row[3],
-                    archived=(row[4] == 'True'),
-                    disabled=(row[5] == 'True'),
-                    tag_name=row[6],
-                    tag_published_at=row[7],
-                    commit_sha=row[8],
-                    commit_at=row[9],
-                    commit_msg=row[10],
-                )
+                repo = api.create_repo_from_latest(row)
+                a[repo.full_name] = repo
             return True, "", a
     except Exception as e:
         print(e)
         return False, "Failed load latest_report.txt", dict()
 
 
-def diff(repo, old):
-    repo['pushed_at_changed'] = repo['pushed_at'] != old['pushed_at']
-    repo['default_branch_changed'] = repo['default_branch'] != old['default_branch']
-    repo['archived_changed'] = repo['archived'] != old['archived']
-    repo['disabled_changed'] = repo['disabled'] != old['disabled']
-    repo['tag_name_changed'] = repo['tag_name'] != old['tag_name']
-    repo['tag_published_at_changed'] = repo['tag_published_at'] != old['tag_published_at']
-    repo['commit_sha_changed'] = repo['commit_sha'] != old['commit_sha']
-
-
-def has_diff(repo):
-    # return repo['pushed_at_changed'] or \
-    return repo['default_branch_changed'] or \
-        repo['archived_changed'] or \
-        repo['disabled_changed']
-    # repo['tag_name_changed'] or \
-    # repo['tag_published_at_changed'] or \
-    # repo['commit_sha_changed']
-
-
 def filter_diff(repos):
     has = 0
     has_diff_repo = []
     for repo in repos:
-        if has_diff(repo):
-            repo['changed'] = True
+        if repo.has_diff():
+            repo.changed = True
             has = has + 1
-            has_diff_repo.append(repo['name'])
+            has_diff_repo.append(repo.name)
     return has, has_diff_repo
 
 
@@ -145,13 +86,12 @@ def main():
     if not suc:
         print("load_repos:", msg)
         return
-    fetch_repos(repos)
     suc, msg, latest = load_latest()
     if suc:
         for repo in repos:
-            old = latest.get(repo['full_name'])
+            old = latest.get(repo.full_name)
             if old is not None:
-                diff(repo, old)
+                repo.diff(old)
         d, r = filter_diff(repos)
         if d <= 0:
             print("No diff, skip report.")
