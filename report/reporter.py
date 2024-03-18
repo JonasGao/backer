@@ -1,6 +1,6 @@
 import mail
-from report.render import render_report
-from report.repo import load_repos, load_latest, save_latest
+from render import render_report
+from repo import load_repos, load_latest, save_latest
 
 
 def filter_diff(repos):

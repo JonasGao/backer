@@ -1,8 +1,8 @@
 import csv
 import os
 from dataclasses import dataclass
-from report.api import get, read
-from report.render import render_latest
+from api import get, read
+from render import render_latest
 
 LATEST_RECORDS_NAME = 'latest_data.txt'
 RECORDS_NAME = "data.txt"
@@ -28,9 +28,9 @@ class Repo:
     default_branch_changed: bool = False
 
     def load_base(self):
-        r, resp_bytes = get(f"/repos/{self.owner}/{self.repo}")
-        r, resp_data = read(r, resp_bytes)
-        if r:
+        success, resp_bytes = get(f"/repos/{self.owner}/{self.repo}")
+        success, resp_data = read(success, resp_bytes)
+        if success:
             self.name = resp_data.get('name')
             self.full_name = resp_data.get('full_name')
             self.updated_at = resp_data.get('updated_at')
@@ -38,7 +38,7 @@ class Repo:
             self.default_branch = resp_data.get('default_branch')
             self.archived = resp_data.get('archived')
             self.disabled = resp_data.get('disabled')
-        return r
+        return success
 
     def diff(self, old):
         self.default_branch_changed = self.default_branch != old.default_branch
