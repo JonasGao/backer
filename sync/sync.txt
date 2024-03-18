@@ -4,3 +4,5 @@ daeuniverse,dae,main,dae
 haishanh,yacd,master,yacd
 juicity,juicity,main,juicity
 MetaCubeX,metacubexd,main,metacubexd
+MetaCubeX,mihomo,Alpha,clash.meta
+MetaCubeX,ClashX.Meta,meta,clashx.meta
