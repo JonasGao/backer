@@ -138,7 +138,8 @@ def create_repo_from_latest(row):
     repo.commit_at = row[9]
     repo.commit_msg = row[10]
     repo.archived = (row[4] == 'True'),
-    repo.disabled = (row[5] == 'True'),
+    repo.disabled = (row[5] == 'True')
+    return repo
 
 
 def get(url):
