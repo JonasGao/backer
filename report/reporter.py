@@ -6,6 +6,9 @@ from jinja2 import Environment
 
 import mail
 
+TEMPLATE_RECORD = "report/row.txt"
+TEMPLATE_TABLE = "report/table.html"
+TEMPLATE_ROW = "report/row.html"
 REPO_LIST = 'report/repos.txt'
 env = Environment()
 
@@ -116,7 +119,7 @@ def save_latest(txt):
 
 
 def render_report(repos):
-    ht = load_template("row.html")
+    ht = load_template(TEMPLATE_ROW)
     ca = []
     ha = []
     for repo in repos:
@@ -124,13 +127,13 @@ def render_report(repos):
             ca.append(ht.render(repo))
         else:
             ha.append(ht.render(repo))
-    bt = load_template("table.html")
+    bt = load_template(TEMPLATE_TABLE)
     html = bt.render(dict(change=''.join(ca), other=''.join(ha)))
     return html
 
 
 def render_latest(repos):
-    t = load_template("row.txt")
+    t = load_template(TEMPLATE_RECORD)
     a = []
     for repo in repos:
         a.append(t.render(repo))
