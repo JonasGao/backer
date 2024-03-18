@@ -36,8 +36,9 @@ def main():
         else:
             mail.send("发现有{0}个仓库更新".format(d), render_report(repos))
     else:
-        print("load_latest:", msg)
-        mail.send("未找到上一次的记录，以下是当前仓库信息", render_report(repos))
+        print("Failure load latest:", msg)
+        print("Will send 'skip' mail.")
+        mail.send("未找到上一次的记录", render_report(repos))
     save_latest(repos)
 
 
