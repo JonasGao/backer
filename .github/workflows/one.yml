@@ -31,11 +31,11 @@ jobs:
           REPORT_RECEIVER: ${{ secrets.REPORT_RECEIVER }}
         run: python report/reporter.py
         shell: bash
-      - name: Archive report.txt
+      - name: Archive latest_data.txt
         uses: actions/upload-artifact@v3
         with:
-          name: report.txt
-          path: report.txt
+          name: latest_data
+          path: data.txt
   RepoSync:
     runs-on: ubuntu-latest
     steps:
