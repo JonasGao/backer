@@ -2,7 +2,7 @@ import http.client
 import json
 import os
 
-TOKEN = "Bearer " + os.getenv("GITHUB_TOKEN")
+TOKEN = "Bearer " + os.getenv("GITHUB_TOKEN", "")
 
 
 def get(url):

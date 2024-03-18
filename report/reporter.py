@@ -149,8 +149,9 @@ def main():
     suc, msg, latest = load_latest()
     if suc:
         for repo in repos:
-            old = latest[repo['full_name']]
-            diff(repo, old)
+            old = latest.get(repo['full_name'])
+            if old is not None:
+                diff(repo, old)
         d, r = filter_diff(repos)
         if d <= 0:
             print("No diff, skip report.")
