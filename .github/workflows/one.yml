@@ -19,11 +19,6 @@ jobs:
           cache: 'pip'
       - name: Install pip dependencies
         run: pip install -r requirements.txt
-      - name: Setup scripts
-        run: |
-          chmod u+x one.sh
-          chmod u+x sync.sh
-          chmod u+x down_latest.sh
       - name: Download latest report
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -50,5 +45,6 @@ jobs:
       - name: Sync...
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          RK: ${{ secrets.clash_rs_key }}
         run: sync/sync.sh
         shell: bash
