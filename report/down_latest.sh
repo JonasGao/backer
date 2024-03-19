@@ -12,7 +12,7 @@ if gh run download --repo jonasgao/backer "${ID}"; then
   echo "Download successfully"
   if mv "${ARTIFACT_NAME}/${RECORDS_NAME}" "./${LATEST_RECORDS_NAME}"; then
     rm -vrf "${ARTIFACT_NAME}"
-    ls -al "${RECORDS_NAME}" && echo "Has download '${RECORDS_NAME}' successfully"
+    ls -al "${LATEST_RECORDS_NAME}" && echo "Has download '${RECORDS_NAME}' successfully"
   else
     echo "Failure move '${ARTIFACT_NAME}/${RECORDS_NAME}', maybe its not exists"
   fi
