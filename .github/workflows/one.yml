@@ -32,7 +32,7 @@ jobs:
         run: python report/reporter.py
         shell: bash
       - name: Archive latest_data.txt
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: latest_data
           path: data.txt
