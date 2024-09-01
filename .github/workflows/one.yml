@@ -1,11 +1,6 @@
 name: Repo Jobs
 run-name: Lets do some thing for our network~
-on:
-  push:
-    branches:
-      - 'main'
-  schedule:
-    - cron: "0 0,6,12,16 * * *"
+on: workflow_dispatch
 jobs:
   RepoReport:
     runs-on: ubuntu-latest
