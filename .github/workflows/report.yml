@@ -1,5 +1,5 @@
-name: Repo Jobs
-run-name: Lets do some thing for our network~
+name: Send target repo reports
+run-name: Send target repo reports
 on: workflow_dispatch
 jobs:
   RepoReport:
@@ -31,14 +31,3 @@ jobs:
         with:
           name: latest_data
           path: data.txt
-  RepoSync:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Check out repository
-        uses: actions/checkout@v4
-      - name: Sync...
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          RK: ${{ secrets.clash_rs_key }}
-        run: sync/sync.sh
-        shell: bash

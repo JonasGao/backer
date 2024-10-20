@@ -1,0 +1,15 @@
+name: Save target repos
+run-name: Save target repos
+on: workflow_dispatch
+jobs:
+  RepoSync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Sync...
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          RK: ${{ secrets.clash_rs_key }}
+        run: sync/sync.sh
+        shell: bash
